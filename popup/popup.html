@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traceless - Tracker Detector</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>
+                <svg class="logo" width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    <circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                    <line x1="12" y1="2" x2="12" y2="6" stroke="currentColor" stroke-width="1"/>
+                    <line x1="12" y1="18" x2="12" y2="22" stroke="currentColor" stroke-width="1"/>
+                    <line x1="2" y1="12" x2="6" y2="12" stroke="currentColor" stroke-width="1"/>
+                    <line x1="18" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="1"/>
+                </svg>
+                Traceless
+            </h1>
+            <p class="subtitle">// Tracker Detection System</p>
+            <div class="ascii-border">═══════════════════════════</div>
+        </header>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="trackerCount">0</div>
+                <div class="stat-label">Trackers</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <div class="stat-value" id="requestCount">0</div>
+                <div class="stat-label">Requests</div>
+            </div>
+        </div>
+
+        <div id="content">
+            <div id="trackerList" class="tracker-list">
+                <!-- Trackers will be populated here -->
+            </div>
+
+            <div id="emptyState" class="empty-state">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    <path d="M8 12l2.5 2.5L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <p>No trackers detected</p>
+                <small>// System monitoring active</small>
+            </div>
+        </div>
+
+        <footer>
+            <button id="clearBtn" class="btn-secondary">Clear</button>
+            <button id="refreshBtn" class="btn-primary">Refresh</button>
+            <button id="detailsBtn" class="btn-accent">Details</button>
+            <button id="graphBtn" class="btn-graph">Data Map</button>
+        </footer>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

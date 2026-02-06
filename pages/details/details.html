@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traceless - Tracker Details</title>
+    <link rel="stylesheet" href="details.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo-section">
+                    <svg class="logo" width="28" height="28" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" fill="none" />
+                        <circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="1.5" fill="none" />
+                        <circle cx="12" cy="12" r="2" fill="currentColor" />
+                        <line x1="12" y1="2" x2="12" y2="6" stroke="currentColor" stroke-width="1" />
+                        <line x1="12" y1="18" x2="12" y2="22" stroke="currentColor" stroke-width="1" />
+                        <line x1="2" y1="12" x2="6" y2="12" stroke="currentColor" stroke-width="1" />
+                        <line x1="18" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="1" />
+                    </svg>
+                    <div class="title-group">
+                        <h1>Traceless</h1>
+                        <span class="subtitle">// Detailed Tracker Analysis</span>
+                    </div>
+                </div>
+                <div class="header-stats">
+                    <div class="stat">
+                        <span class="stat-value" id="totalTrackers">0</span>
+                        <span class="stat-label">Trackers</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="totalRequests">0</span>
+                        <span class="stat-label">Requests</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ascii-line">════════════════════════════════════════════════════════════════════════════════
+            </div>
+        </header>
+
+        <div class="controls">
+            <div class="search-box">
+                <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+                    <path d="M16 16l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                <input type="text" id="searchInput" placeholder="Search trackers...">
+            </div>
+            <div class="filter-group">
+                <label>Category:</label>
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="analytics">Analytics</option>
+                    <option value="advertising">Advertising</option>
+                    <option value="social">Social Media</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <button id="exportBtn" class="btn-export">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" />
+                    <polyline points="7,10 12,15 17,10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" />
+                </svg>
+                Export JSON
+            </button>
+        </div>
+
+        <main id="content">
+            <div id="trackerGrid" class="tracker-grid">
+                <!-- Tracker cards will be populated here -->
+            </div>
+
+            <div id="emptyState" class="empty-state hidden">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" fill="none" />
+                    <path d="M8 12l2.5 2.5L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <h2>No Trackers Detected</h2>
+                <p>// Monitoring systems operational</p>
+                <p class="hint">Browse the web to detect tracking activity</p>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <span class="status">
+                    <span class="live-dot"></span>
+                    System Active
+                </span>
+                <span class="timestamp" id="lastUpdated">Last updated: --:--:--</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="details.js"></script>
+</body>
+
+</html>

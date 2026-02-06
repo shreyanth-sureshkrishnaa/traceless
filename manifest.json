@@ -1,0 +1,42 @@
+{
+  "manifest_version": 2,
+  "name": "Traceless",
+  "version": "1.0.0",
+  "description": "Detect and monitor tracking requests across the web",
+  "permissions": [
+    "webRequest",
+    "tabs",
+    "webNavigation",
+    "storage",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": [
+      "background/background.js"
+    ],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    "data/trackers.json",
+    "pages/details/details.html",
+    "pages/details/details.css",
+    "pages/details/details.js",
+    "pages/graph/graph.html",
+    "pages/graph/graph.css",
+    "pages/graph/graph.js"
+  ]
+}

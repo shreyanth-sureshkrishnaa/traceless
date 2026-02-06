@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traceless - Data Flow Map</title>
+    <link rel="stylesheet" href="graph.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <svg class="logo" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" fill="none" />
+                    <circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="1.5" fill="none" />
+                    <circle cx="12" cy="12" r="2" fill="currentColor" />
+                </svg>
+                <div class="title-group">
+                    <h1>Data Flow Map</h1>
+                    <span class="subtitle">// Where Your Data Goes</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="legend">
+                    <div class="legend-item">
+                        <span class="legend-dot analytics"></span>
+                        <span>Analytics</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot advertising"></span>
+                        <span>Advertising</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot social"></span>
+                        <span>Social</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot other"></span>
+                        <span>Other</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="graph-container">
+            <canvas id="graphCanvas"></canvas>
+
+            <div id="tooltip" class="tooltip hidden">
+                <div class="tooltip-header">
+                    <span class="tooltip-domain"></span>
+                    <span class="tooltip-count"></span>
+                </div>
+                <div class="tooltip-category"></div>
+                <div class="tooltip-types"></div>
+            </div>
+
+            <div id="emptyState" class="empty-state hidden">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1" fill="none" />
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1" fill="none" />
+                    <line x1="12" y1="5" x2="12" y2="2" stroke="currentColor" stroke-width="1" />
+                    <line x1="12" y1="22" x2="12" y2="19" stroke="currentColor" stroke-width="1" />
+                    <line x1="5" y1="12" x2="2" y2="12" stroke="currentColor" stroke-width="1" />
+                    <line x1="22" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="1" />
+                </svg>
+                <h2>No Data Flow Detected</h2>
+                <p>// Graph will populate as trackers are detected</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <button id="resetBtn" class="btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <polyline points="3,4 3,8 7,8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    Reset View
+                </button>
+                <button id="pauseBtn" class="btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" id="pauseIcon">
+                        <rect x="6" y="4" width="4" height="16" stroke="currentColor" stroke-width="2" fill="none" />
+                        <rect x="14" y="4" width="4" height="16" stroke="currentColor" stroke-width="2" fill="none" />
+                    </svg>
+                    <span id="pauseText">Pause</span>
+                </button>
+            </div>
+            <div class="stats-bar">
+                <span class="stat"><strong id="nodeCount">0</strong> Trackers</span>
+                <span class="stat"><strong id="connectionCount">0</strong> Connections</span>
+                <span class="live-indicator">
+                    <span class="live-dot"></span>
+                    Live
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <script src="graph.js"></script>
+</body>
+
+</html>

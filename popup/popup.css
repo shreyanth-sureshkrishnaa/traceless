@@ -1,0 +1,396 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #12121a;
+    --bg-tertiary: #1a1a25;
+    --text-primary: #e0e0e0;
+    --text-secondary: #888899;
+    --accent-green: #00ff41;
+    --accent-amber: #ffb000;
+    --accent-red: #ff3333;
+    --accent-cyan: #00d4ff;
+    --glow-green: rgba(0, 255, 65, 0.3);
+    --glow-amber: rgba(255, 176, 0, 0.3);
+    --border-color: #2a2a3a;
+    --scanline-opacity: 0.03;
+}
+
+body {
+    width: 380px;
+    min-height: 450px;
+    font-family: 'IBM Plex Mono', 'Consolas', 'Monaco', monospace;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* CRT Scanline Effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, var(--scanline-opacity)) 2px,
+        rgba(0, 0, 0, var(--scanline-opacity)) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* Subtle screen flicker */
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.97; }
+    94% { opacity: 1; }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    animation: flicker 8s infinite;
+}
+
+/* Header */
+header {
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-green), transparent);
+}
+
+header h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-green);
+    text-shadow: 0 0 10px var(--glow-green), 0 0 20px var(--glow-green);
+    margin-bottom: 6px;
+}
+
+.logo {
+    color: var(--accent-green);
+    filter: drop-shadow(0 0 4px var(--glow-green));
+}
+
+.subtitle {
+    font-size: 11px;
+    color: var(--text-secondary);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ASCII Decorator */
+.ascii-border {
+    font-size: 10px;
+    color: var(--border-color);
+    letter-spacing: 0;
+    margin-top: 8px;
+    opacity: 0.6;
+}
+
+/* Stats Section */
+.stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.stat-item {
+    text-align: center;
+    flex: 1;
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent-amber);
+    line-height: 1;
+    margin-bottom: 6px;
+    text-shadow: 0 0 10px var(--glow-amber), 0 0 20px var(--glow-amber);
+    font-variant-numeric: tabular-nums;
+}
+
+.stat-label {
+    font-size: 10px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(180deg, transparent, var(--border-color), transparent);
+}
+
+/* Content Area */
+#content {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 180px;
+    background: var(--bg-primary);
+}
+
+.tracker-list {
+    padding: 12px;
+}
+
+.tracker-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--accent-red);
+    padding: 12px;
+    margin-bottom: 8px;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.tracker-item::before {
+    content: '>';
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent-green);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.tracker-item:hover {
+    border-color: var(--accent-green);
+    background: var(--bg-tertiary);
+    padding-left: 24px;
+}
+
+.tracker-item:hover::before {
+    opacity: 1;
+}
+
+.tracker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.tracker-domain {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 12px;
+    word-break: break-word;
+    flex: 1;
+    font-family: inherit;
+}
+
+.tracker-count {
+    background: var(--accent-red);
+    color: var(--bg-primary);
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+    margin-left: 8px;
+    font-family: inherit;
+}
+
+.tracker-types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.type-badge {
+    background: var(--bg-tertiary);
+    color: var(--accent-cyan);
+    padding: 3px 8px;
+    font-size: 9px;
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Empty State */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--text-secondary);
+    min-height: 180px;
+}
+
+.empty-state svg {
+    margin-bottom: 16px;
+    color: var(--accent-green);
+    opacity: 0.4;
+    filter: drop-shadow(0 0 4px var(--glow-green));
+}
+
+.empty-state p {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.empty-state small {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Footer / Action Buttons */
+footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 12px;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+}
+
+button {
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+button:hover {
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+    text-shadow: 0 0 8px var(--glow-green);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.btn-primary {
+    background: var(--accent-green);
+    color: var(--bg-primary);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #00dd38;
+    color: var(--bg-primary);
+    text-shadow: none;
+    box-shadow: 0 0 15px var(--glow-green);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-secondary);
+}
+
+.btn-accent {
+    background: transparent;
+    border-color: var(--accent-amber);
+    color: var(--accent-amber);
+}
+
+.btn-accent:hover {
+    background: var(--accent-amber);
+    color: var(--bg-primary);
+    text-shadow: none;
+    box-shadow: 0 0 15px var(--glow-amber);
+}
+
+.btn-graph {
+    background: transparent;
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+}
+
+.btn-graph:hover {
+    background: var(--accent-cyan);
+    color: var(--bg-primary);
+    text-shadow: none;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-green);
+}
+
+/* Pulse animation for live data */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.live-indicator {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: pulse 2s infinite;
+    box-shadow: 0 0 6px var(--glow-green);
+}
